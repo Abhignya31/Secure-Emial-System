@@ -76,8 +76,4 @@ Here’s a sample run of the command-line Secure Email System:
 - Attachments support
 - Real database authentication
 
----
 
-## 🧑‍💻 Author
-
-Meghna – B.Tech Data Science Student
