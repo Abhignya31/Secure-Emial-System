@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify Digital Signature</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>🧾 Verify Digital Signature</h2>
+        <form action="/verify" method="POST" enctype="multipart/form-data">
+            <label for="message">Message:</label>
+            <textarea name="message" rows="4" required></textarea>
+
+            <label for="signature">Signature (Hex):</label>
+            <input type="text" name="signature" required>
+
+            <label for="public_key">Sender Public Key:</label>
+            <textarea name="public_key" rows="4" placeholder="Paste sender's public key here..."></textarea>
+
+            <label for="public_key_file">Or Upload Public Key File (.pem):</label>
+            <input type="file" name="public_key_file" accept=".pem">
+
+            <button type="submit">Verify Signature</button>
+        </form>
+
+        {% if result %}
+            <div class="result-box">
+                {% if result.verified %}
+                    <p class="success">✅ Signature Verified Successfully!</p>
+                {% else %}
+                    <p class="fail">❌ Signature Verification Failed.</p>
+                {% endif %}
+            </div>
+        {% elif result is not none %}
+            <div class="result-box">
+                <p class="fail">No result data found.</p>
+            </div>
+        {% endif %}
+
+        <a href="/">⬅️ Back to Home</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Email System</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">🔐 Secure Email System</h2>
+    
+    <form method="POST" action="/" enctype="multipart/form-data" class="shadow p-4 bg-white rounded">
+      <div class="mb-3">
+        <label for="username" class="form-label">👤 Username:</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">🔑 Password:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="message" class="form-label">✉️ Message:</label>
+        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="recipient_key" class="form-label">📤 Recipient Public Key (Optional):</label>
+        <textarea class="form-control" id="recipient_key" name="recipient_key" rows="4" placeholder="Paste recipient's public key here..."></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="recipient_key_file" class="form-label">📁 Or Upload Public Key File (.pem):</label>
+        <input type="file" class="form-control" id="recipient_key_file" name="recipient_key_file" accept=".pem">
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Encrypt & Sign 🔐</button>
+      </div>
+      <div class="text-center mt-3">
+        <a href="/verify" class="btn btn-outline-info">🧾 Verify a Signature</a>
+      </div>
+    </form>
+
+    {% if encrypted %}
+      <div class="mt-5 p-4 bg-success text-white rounded shadow">
+        <h4>✅ Message Encrypted and Signed!</h4>
+        <p><strong>Public Key:</strong></p>
+        <pre class="bg-white text-dark p-2 rounded" title="{{ public_key }}">{{ public_key[:60] }}...</pre>
+        <p><strong>Encrypted Message:</strong></p>
+        <pre class="bg-white text-dark p-2 rounded" title="{{ encrypted }}">{{ encrypted[:60] }}...</pre>
+        <p><strong>Digital Signature:</strong></p>
+        <pre class="bg-white text-dark p-2 rounded" title="{{ signature }}">{{ signature[:60] }}...</pre>
+        <a href="/" class="btn btn-light mt-3">🔁 Encrypt Another</a>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
