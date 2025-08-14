@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+*.tmp
+
+# VS Code settings
+.vscode/
+
+# Sensitive key files (comment out if public keys only)
+*.pem
+
+# Environment variables
+.env
+
+# Pytest or test coverage
+htmlcov/
+coverage.xml
+*.cover
+.cache
+.tox/
+.pytest_cache/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
